@@ -46,4 +46,5 @@ RUN pip3 install pylint
 COPY run.sh $SONARQUBE_HOME/bin/
 RUN chmod +x $SONARQUBE_HOME/bin/run.sh
 USER sonarqube
+COPY sonarqube.properties.t $SONARQUBE_HOME/conf/sonarqube.properties
 ENTRYPOINT ["./bin/run.sh"]
