@@ -1,6 +1,7 @@
-# sonarqube
+# Sonarqube
 
 SonarQube is an open source platform for continuous inspection of code quality.
+
 # How to use this image
 
 Here you'll find the Docker image for the Community Edition of SonarQube 7.9.1 with Postgres in the backend support.
@@ -19,11 +20,24 @@ ulimit -u 4096
 ```
 
 Sonarqube official container was modified to include the extra configuration: 
-# Pylint deployment:
-  Pylint is included in the sonarqube container and pylint executable configured to run python verification.
-# Ability to run container in superuser mode:
-  Dockerfile was modified to give user the ability to access container as a root to do sonarqube modifications on a fly.
-  
 
-#connection to Postgres
-  ```Pylint installation and configuration 
+## Pylint deployment:
+  Pylint is included in the sonarqube image and pylint executable is configured to run for python verification.
+## Ability to run container in superuser mode:
+  The official Dockerfile was modified to give user the ability to access container as a root to do sonarqube config modifications on a fly.
+## Sonarqube deployment
+  For the ease of the deployment docker-compose.yml was created to start sonarqube and Postgres containers.
+  Just simply run:
+  ```console
+  <path>/sonarqube$ docker-compose up -d
+  ```
+  Sonarqube will be running on localhost:9000. To modify the port please update docker-compose host port value for Sonarqube service.
+  By default you can login as `admin` with password `admin`, see [authentication documentation](https://docs.sonarqube.org/latest/instance-administration/security/).
+  
+  For permanent configuration changes sonarqube.properties.t file included in the distribution. That file can be modified with permanent configuration changes and will be included in the sonarqube image.
+ 
+## Administration
+
+The administration guide can be found [here](https://redirect.sonarsource.com/doc/administration-guide.html).
+
+  
