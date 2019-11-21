@@ -55,14 +55,14 @@ The administration guide can be found [here](https://redirect.sonarsource.com/do
 
   The current configuration will build and deploy Sonarqube and Postgres on a local machineor on a server. The following procedures are recommended to be implemented for production deployment:
 
--	### Configuration Change
-  It is recommended to modify sonar.properties file with environment variables that will be suitable for the deployment. Those variables should include SAML configuration for user access management, logging and reporting destinations as well as configuration for code check other than Python.
+-	### Environment Specific Configuration Changes
+  It is recommended to modify sonar.properties file with environment variables that will be suitable for the deployment environment. Those variables should include SAML configuration for user access management, logging and reporting destinations as well as configuration for code check other than Python.
 
--	** Rebuild Sonarqube image for external repo **
+-	### Rebuild Sonarqube image for external repo 
   Makefile "build" and "all" sections image tags must be replaced with <repo>/<ImageName>, where repo is a name/location of artifactory/ECR/dockerhub repository. docker-compose.yml must have the same tag for sonarqube image as in Makefile
 
--	** Migrate Sonarqube deployment to AWS **
+-	### Migrate Sonarqube deployment to AWS 
   Create terraform/awscli script to create blank RDS Postgres DB and to create Fargate/ECS task for sonarqube container. Modify Dockerfile or sonar.properties to include RDS/PG username, password and jdbc URL. Makefile and docker-compose.yml should not be used for this and following step.
 
--	** Automate Sonarqube deployment **
+-	### Automate Sonarqube deployment 
   Create jenkinsFile to include terraform script to automate Sonarqube application build and deploy to AWS. Environment variables can be detached in to Jenkins environment variables to be configurable during the build/deployment.   
