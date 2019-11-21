@@ -55,7 +55,7 @@ The administration guide can be found [here](https://redirect.sonarsource.com/do
 
   The current configuration will build and deploy Sonarqube and Postgres on a local machineor on a server. The following procedures are recommended to be implemented for production deployment:
 
--	** Configuration Change **
+-	### Configuration Change
   It is recommended to modify sonar.properties file with environment variables that will be suitable for the deployment. Those variables should include SAML configuration for user access management, logging and reporting destinations as well as configuration for code check other than Python.
 
 -	** Rebuild Sonarqube image for external repo **
