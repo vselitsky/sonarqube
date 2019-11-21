@@ -8,8 +8,7 @@ ENV SONAR_VERSION=7.9.1 \
     SONARQUBE_HOME=/opt/sonarqube \
     SONARQUBE_JDBC_USERNAME=sonar \
     SONARQUBE_JDBC_PASSWORD=sonar \
-    SONARQUBE_JDBC_URL="" \
-    SONARQUBE_PYTHON_PYLINT=""
+    SONARQUBE_JDBC_URL=""
 
 # Http port
 EXPOSE 9000
@@ -43,8 +42,8 @@ VOLUME "$SONARQUBE_HOME/data"
 
 WORKDIR $SONARQUBE_HOME
 RUN pip3 install pylint
-COPY run.sh $SONARQUBE_HOME/bin/
+COPY docker/run.sh $SONARQUBE_HOME/bin/
 RUN chmod +x $SONARQUBE_HOME/bin/run.sh
+COPY docker/sonar.properties $SONARQUBE_HOME/conf/
 USER sonarqube
-COPY sonarqube.properties.t $SONARQUBE_HOME/conf/sonarqube.properties
 ENTRYPOINT ["./bin/run.sh"]

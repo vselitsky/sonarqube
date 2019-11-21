@@ -25,16 +25,27 @@ Sonarqube official container was modified to include the extra configuration:
   Pylint is included in the sonarqube image and pylint executable is configured to run for python verification.
 ## Ability to run container in superuser mode:
   The official Dockerfile was modified to give user the ability to access container as a root to do sonarqube config modifications on a fly.
+## Sonarqube image build
+  To build sonarqube image include sonarqube config changes to docker/sonar.properties and run
+  ```console
+  <path>/sonarqube$ make build
+  ```
 ## Sonarqube deployment
   For the ease of the deployment docker-compose.yml was created to start sonarqube and Postgres containers.
   Just simply run:
   ```console
-  <path>/sonarqube$ docker-compose up -d
+  <path>/sonarqube$ make deploy
   ```
   Sonarqube will be running on localhost:9000. To modify the port please update docker-compose host port value for Sonarqube service.
   By default you can login as `admin` with password `admin`, see [authentication documentation](https://docs.sonarqube.org/latest/instance-administration/security/).
   
-  For permanent configuration changes sonarqube.properties.t file included in the distribution. That file can be modified with permanent configuration changes and will be included in the sonarqube image.
+  For permanent configuration changes sonar.properties file was included in the distribution. That file can be modified with permanent configuration changes and will be included in the sonarqube image.
+
+## Sonarqube uninstall
+  To uninstall sonarqube and postgres containers please run:
+  ```console
+  <path>/sonarqube$ make destroy
+  ```
  
 ## Administration
 
